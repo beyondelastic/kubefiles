@@ -5,7 +5,7 @@ metadata:
   labels:
     app: redis-server
     tier: cache
-  namespace: beyond
+  namespace: default
 spec:
   type: ClusterIP
   ports:
@@ -21,7 +21,7 @@ metadata:
   labels:
     app: yelb-db
     tier: backenddb
-  namespace: beyond
+  namespace: default
 spec:
   type: ClusterIP
   ports:
@@ -37,7 +37,7 @@ metadata:
   labels:
     app: yelb-appserver
     tier: middletier
-  namespace: beyond
+  namespace: default
 spec:
   type: ClusterIP
   ports:
@@ -53,7 +53,7 @@ metadata:
   labels:
     app: yelb-ui
     tier: frontend
-  namespace: beyond
+  namespace: default
 spec:
   type: NodePort
   ports:
@@ -69,7 +69,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: yelb-ui
-  namespace: beyond
+  namespace: default
 spec:
   replicas: 1
   template:
@@ -88,7 +88,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: redis-server
-  namespace: beyond
+  namespace: default
 spec:
   replicas: 1
   template:
@@ -107,7 +107,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: yelb-db
-  namespace: beyond
+  namespace: default
 spec:
   replicas: 1
   template:
@@ -126,7 +126,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: yelb-appserver
-  namespace: beyond
+  namespace: default
 spec:
   replicas: 1
   template:
