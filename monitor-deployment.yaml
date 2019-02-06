@@ -1,0 +1,47 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: monitor-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: monitor
+    spec:
+      containers:
+      - name: monitor
+        image: alainroy/dashboard
+        ports:
+        - containerPort: 3030
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: monitor-service
+  labels:
+    app: monitor
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 3030
+    protocol: TCP
+    name: http
+  selector:
+    app: monitor
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: monitor-service
+#   labels:
+#     app: monitor
+# spec:
+#   type: NodePort
+#   ports:
+#   - port: 3030
+#     protocol: TCP
+#     name: http
+#   selector:
+#     app: monitor
